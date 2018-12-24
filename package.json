@@ -1,0 +1,24 @@
+{
+  "name": "Alipay_For_Node",
+  "version": "1.0.0",
+  "description": "段子黄写的Node服务端生成支付宝支付链接的第三方模块，支持 **沙箱环境** 和 **生产环境**",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Duanzihuang/alipay_for_node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Duanzihuang/alipay_for_node/issues"
+  },
+  "homepage": "https://github.com/Duanzihuang/alipay_for_node#readme"
+}

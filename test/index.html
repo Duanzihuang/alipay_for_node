@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>支付宝支付测试</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container" style="margin-top:180px; ">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-primary">
+          <div class="panel-heading">支付宝沙箱测试</div>
+          <div class="panel-body">
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label for="productName" class="col-sm-2 control-label">商品名称:</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="productName"
+                    id="productNameId"
+                    placeholder="请输入商品名称"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="priceId" class="col-sm-2 control-label">价格：</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="price"
+                    id="priceId"
+                    placeholder="请输入价格"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="returnURL" class="col-sm-2 control-label">跳转地址:</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="returnURL"
+                    id="returnURLId"
+                    placeholder="请输入支付成功之后跳转的地址，以http/https开头哦"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <!-- submit有一个默认的提交行为，不要加上 -->
+                  <!-- <button type="submit" onclick="login()"  class="btn btn-default">登录</button> -->
+                  <button onclick="pay()" class="btn btn-default">
+                    支付
+                  </button>
+                  &nbsp;&nbsp;
+                  <input
+                    onclick="reset();"
+                    type="button"
+                    value="重置"
+                    class="btn btn-danger"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+      //pay
+      function pay(){
+        const params = {
+          productName:$("#productNameId").val(),
+          price:$("#priceId").val(),
+          returnURL:$("#returnURLId").val()
+        }
+
+        $.post('http://127.0.0.1:3000/pay',params,function(data){
+            if (data.status === 0){
+              window.open(data.alipay_url)
+            }
+        })
+      }
+
+      //重置
+      function reset(){
+        $("#productNameId").val('')
+        $("#priceId").val('')
+        $("#returnURLId").val('')
+      }
+  </script>
+</html>
